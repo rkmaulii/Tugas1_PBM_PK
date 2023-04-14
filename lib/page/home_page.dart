@@ -11,7 +11,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   double hasil = 0;
-
+  dynamic _keterangan  =0.0;
+  String _perhitungan= '';
   void hitungBMI() {
     double tinggi = double.parse(_tinggi.text);
     double berat = double.parse(_berat.text);
@@ -33,19 +34,26 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 80,
             child: Text(
-              "selamat datang $username",
+              "Selamat datang $username ",
               style: TextStyle(fontSize: 24, color: Colors.white),
             ),
           ),
           SizedBox(
-            height: 80,
+            height: 30,
             child: Text(
-              hasil.toString(),
+              _perhitungan.toString(),
               style: TextStyle(fontSize: 24, color: Colors.white),
+            ),
+          ),
+          SizedBox(
+            child: Text(
+              _keterangan.toString(),
+              style: TextStyle(fontSize: 18, color: Colors.white),
             ),
           ),
           TextFormField(
             controller: _tinggi,
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blueAccent)),
@@ -59,6 +67,7 @@ class _HomePageState extends State<HomePage> {
           ),
           TextFormField(
             controller: _berat,
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blueAccent)),
@@ -80,8 +89,26 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   setState(() {
                     hitungBMI();
-                  });
+                   if (hasil<18.5){
+                   _keterangan='Berat badan anda kurang';
+                   _perhitungan  = hasil.toStringAsFixed(1);
+                   } 
+                   else if (hasil>=18.5 && hasil <24.9){
+                    _keterangan='Badan anda Normal';
+                    _perhitungan = hasil.toStringAsFixed(1);
+                  }
+                   else if (hasil>=25.0 && hasil <29.9){
+                    _keterangan='Berat badan ada kelebihan';
+                    _perhitungan = hasil.toStringAsFixed(1);
+                  }
+                   else {
+                    _keterangan='Obesitas';
+                    _perhitungan = hasil.toStringAsFixed(1);
+                  }
+                  });         
                 },
+               
+
                 child: Center(
                   child: Text(
                     "Hitung",

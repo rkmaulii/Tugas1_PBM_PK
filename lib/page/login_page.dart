@@ -68,6 +68,7 @@ class LogIn extends StatelessWidget {
                   ),
                   TextFormField(
                     controller: test1,
+                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black)),
@@ -79,6 +80,7 @@ class LogIn extends StatelessWidget {
                   ),
                   TextFormField(
                     controller: test2,
+                    style: TextStyle(color: Colors.white),
                     obscureText: true,
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
